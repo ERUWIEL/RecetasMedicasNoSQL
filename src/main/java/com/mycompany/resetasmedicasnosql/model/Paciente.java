@@ -7,25 +7,38 @@ import java.util.List;
 public class Paciente {
 
     private ObjectId id;
-    private ObjectId id_usuario;
+    private String email;
+    private String contraseña;
+    private String nombre;
+    private String apellido;
+    private String telefono;
+    private Date fecha_registro;
+    private boolean activo;
+
+    // Datos específicos del paciente
     private String cedula;
     private Date fecha_nacimiento;
     private String genero;
     private String direccion;
     private List<String> alergias;
     private List<String> condiciones_previas;
-    private Date fecha_creacion;
 
     public Paciente() {
     }
 
-    public Paciente(ObjectId id_usuario, String cedula, Date fecha_nacimiento, String genero, String direccion) {
-        this.id_usuario = id_usuario;
+    public Paciente(String email, String contraseña, String nombre, String apellido,
+            String telefono, String cedula, Date fecha_nacimiento, String genero, String direccion) {
+        this.email = email;
+        this.contraseña = contraseña;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
         this.cedula = cedula;
         this.fecha_nacimiento = fecha_nacimiento;
         this.genero = genero;
         this.direccion = direccion;
-        this.fecha_creacion = new Date();
+        this.fecha_registro = new Date();
+        this.activo = true;
     }
 
     // Getters y Setters
@@ -37,12 +50,60 @@ public class Paciente {
         this.id = id;
     }
 
-    public ObjectId getId_usuario() {
-        return id_usuario;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId_usuario(ObjectId id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public Date getFecha_registro() {
+        return fecha_registro;
+    }
+
+    public void setFecha_registro(Date fecha_registro) {
+        this.fecha_registro = fecha_registro;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     public String getCedula() {
@@ -91,13 +152,5 @@ public class Paciente {
 
     public void setCondiciones_previas(List<String> condiciones_previas) {
         this.condiciones_previas = condiciones_previas;
-    }
-
-    public Date getFecha_creacion() {
-        return fecha_creacion;
-    }
-
-    public void setFecha_creacion(Date fecha_creacion) {
-        this.fecha_creacion = fecha_creacion;
     }
 }

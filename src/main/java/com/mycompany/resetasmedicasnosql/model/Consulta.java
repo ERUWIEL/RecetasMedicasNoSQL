@@ -22,8 +22,8 @@ public class Consulta {
         this.id_cita = id_cita;
         this.id_paciente = id_paciente;
         this.id_medico = id_medico;
-        this.fecha_consulta = new Date();
         this.diagnostico = diagnostico;
+        this.fecha_consulta = new Date();
         this.fecha_registro = new Date();
     }
 

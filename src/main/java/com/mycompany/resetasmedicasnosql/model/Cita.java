@@ -8,7 +8,6 @@ public class Cita {
     private ObjectId id;
     private ObjectId id_paciente;
     private ObjectId id_medico;
-    private ObjectId id_disponibilidad;
     private Date fecha_hora;
     private String estado; // pendiente, confirmada, completada, cancelada
     private String motivo_consulta;
@@ -19,11 +18,9 @@ public class Cita {
     public Cita() {
     }
 
-    public Cita(ObjectId id_paciente, ObjectId id_medico, ObjectId id_disponibilidad,
-            Date fecha_hora, String motivo_consulta) {
+    public Cita(ObjectId id_paciente, ObjectId id_medico, Date fecha_hora, String motivo_consulta) {
         this.id_paciente = id_paciente;
         this.id_medico = id_medico;
-        this.id_disponibilidad = id_disponibilidad;
         this.fecha_hora = fecha_hora;
         this.motivo_consulta = motivo_consulta;
         this.estado = "pendiente";
@@ -53,14 +50,6 @@ public class Cita {
 
     public void setId_medico(ObjectId id_medico) {
         this.id_medico = id_medico;
-    }
-
-    public ObjectId getId_disponibilidad() {
-        return id_disponibilidad;
-    }
-
-    public void setId_disponibilidad(ObjectId id_disponibilidad) {
-        this.id_disponibilidad = id_disponibilidad;
     }
 
     public Date getFecha_hora() {

@@ -12,7 +12,6 @@ public class Notificacion {
     private String mensaje;
     private Date fecha_envio;
     private boolean leida;
-    private Date fecha_lectura;
 
     public Notificacion() {
     }
@@ -81,13 +80,5 @@ public class Notificacion {
 
     public void setLeida(boolean leida) {
         this.leida = leida;
-    }
-
-    public Date getFecha_lectura() {
-        return fecha_lectura;
-    }
-
-    public void setFecha_lectura(Date fecha_lectura) {
-        this.fecha_lectura = fecha_lectura;
     }
 }
