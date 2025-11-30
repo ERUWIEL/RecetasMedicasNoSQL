@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.resetasmedicasnosql;
 
 /**
@@ -10,7 +6,14 @@ package com.mycompany.resetasmedicasnosql;
  */
 public class ResetasMedicasNoSQL {
 
+      
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
+    }
+    
+    /**
+     * metodo que inicia las pruebas de la capa de acceso de datos
+     */
+    public static void correrPruebasRepository() {
     }
 }
