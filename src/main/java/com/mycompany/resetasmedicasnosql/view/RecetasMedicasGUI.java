@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.resetasmedicasnosql.view;
 
-/**
- *
- * @author Luis Valenzuela
- */
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
@@ -27,13 +19,18 @@ import com.mycompany.resetasmedicasnosql.repository.impl.MedicoRepository;
 import com.mycompany.resetasmedicasnosql.repository.impl.PacienteRepository;
 import com.mycompany.resetasmedicasnosql.repository.impl.RecetaRepository;
 
+/**
+ * clase JFrane de la interfaz grafica
+ * @author Luis Valenzuela
+ */
 public class RecetasMedicasGUI extends JFrame {
+
     private CardLayout cardLayout;
     private JPanel mainPanel;
     private String usuarioActual;
     private String tipoUsuario;
     private ObjectId usuarioId;
-    
+
     // Servicios
     private PacienteService pacienteService;
     private MedicoService medicoService;
@@ -43,7 +40,7 @@ public class RecetasMedicasGUI extends JFrame {
 
     public RecetasMedicasGUI() {
         initializeServices();
-        
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1200, 700);
         setLocationRelativeTo(null);
@@ -51,9 +48,9 @@ public class RecetasMedicasGUI extends JFrame {
 
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
-        
+
         mainPanel.add(new LoginPanel(), "login");
-        
+
         add(mainPanel);
         setVisible(true);
     }
@@ -61,14 +58,14 @@ public class RecetasMedicasGUI extends JFrame {
     private void initializeServices() {
         try {
             MongoClientProvider.INSTANCE.init();
-            
+
             // Inicializar repositorios
             PacienteRepository pacienteRepo = new PacienteRepository();
             MedicoRepository medicoRepo = new MedicoRepository();
             CitaRepository citaRepo = new CitaRepository();
             RecetaRepository recetaRepo = new RecetaRepository();
             AdministradorRepository adminRepo = new AdministradorRepository();
-            
+
             // Inicializar servicios
             pacienteService = new PacienteService(pacienteRepo);
             medicoService = new MedicoService(medicoRepo);
@@ -77,11 +74,12 @@ public class RecetasMedicasGUI extends JFrame {
             administradorService = new AdministradorService(adminRepo);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos: " + e.getMessage(),
-                "Error de conexión", JOptionPane.ERROR_MESSAGE);
+                    "Error de conexión", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private class LoginPanel extends JPanel {
+
         private JTextField emailField;
         private JPasswordField passwordField;
 
@@ -139,19 +137,19 @@ public class RecetasMedicasGUI extends JFrame {
 
             centerPanel.add(Box.createVerticalStrut(20));
 
-            JPanel testPanel = new JPanel();
-            testPanel.setLayout(new BoxLayout(testPanel, BoxLayout.Y_AXIS));
-            testPanel.setBackground(new Color(240, 248, 255));
-            testPanel.setBorder(new LineBorder(new Color(70, 130, 180), 1));
-
-            JLabel testLabel = new JLabel("Usuarios de prueba:");
-            testLabel.setFont(new Font("Arial", Font.BOLD, 11));
-            testPanel.add(testLabel);
-            testPanel.add(new JLabel("📧 admin@ejemplo.com - pass: admin"));
-            testPanel.add(new JLabel("👨‍⚕️ medico@ejemplo.com - pass: medico"));
-            testPanel.add(new JLabel("👤 paciente@ejemplo.com - pass: paciente"));
-
-            centerPanel.add(testPanel);
+//            JPanel testPanel = new JPanel();
+//            testPanel.setLayout(new BoxLayout(testPanel, BoxLayout.Y_AXIS));
+//            testPanel.setBackground(new Color(240, 248, 255));
+//            testPanel.setBorder(new LineBorder(new Color(70, 130, 180), 1));
+//
+//            JLabel testLabel = new JLabel("Usuarios de prueba:");
+//            testLabel.setFont(new Font("Arial", Font.BOLD, 11));
+//            testPanel.add(testLabel);
+//            testPanel.add(new JLabel("📧 admin@ejemplo.com - pass: admin"));
+//            testPanel.add(new JLabel("👨‍⚕️ medico@ejemplo.com - pass: medico"));
+//            testPanel.add(new JLabel("👤 paciente@ejemplo.com - pass: paciente"));
+//
+//            centerPanel.add(testPanel);
 
             gbc.gridx = 0;
             gbc.gridy = 0;
@@ -164,13 +162,13 @@ public class RecetasMedicasGUI extends JFrame {
 
             if (email.isEmpty() || password.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Por favor completa todos los campos",
-                    "Error", JOptionPane.ERROR_MESSAGE);
+                        "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             try {
                 boolean autenticado = false;
-                
+
                 if (email.contains("admin")) {
                     Administrador admin = administradorService.autenticarAdmin(email, password);
                     if (admin != null) {
@@ -202,16 +200,17 @@ public class RecetasMedicasGUI extends JFrame {
                     cardLayout.show(mainPanel, "dashboard");
                 } else {
                     JOptionPane.showMessageDialog(this, "Email o contraseña incorrectos",
-                        "Error", JOptionPane.ERROR_MESSAGE);
+                            "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error de autenticación: " + e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
 
     private class DashboardPanel extends JPanel {
+
         private CardLayout contentCardLayout;
         private JPanel contentPanel;
 
@@ -231,9 +230,9 @@ public class RecetasMedicasGUI extends JFrame {
 
             sidebarPanel.add(Box.createVerticalStrut(20));
 
-            JButton dashboardBtn = createSidebarButton("📊 Dashboard", e -> showContent("dashboard_content"));
-            JButton citasBtn = createSidebarButton("📅 Citas", e -> showContent("citas_content"));
-            JButton recetasBtn = createSidebarButton("📋 Recetas", e -> showContent("recetas_content"));
+            JButton dashboardBtn = createSidebarButton("Dashboard", e -> showContent("dashboard_content"));
+            JButton citasBtn = createSidebarButton("Citas", e -> showContent("citas_content"));
+            JButton recetasBtn = createSidebarButton("Recetas", e -> showContent("recetas_content"));
 
             sidebarPanel.add(dashboardBtn);
             sidebarPanel.add(citasBtn);
@@ -241,8 +240,8 @@ public class RecetasMedicasGUI extends JFrame {
 
             if (tipoUsuario.equals("admin") || tipoUsuario.equals("medico")) {
                 JButton usuariosBtn = createSidebarButton(
-                    tipoUsuario.equals("admin") ? "👨‍⚕️ Médicos" : "👤 Pacientes",
-                    e -> showContent("usuarios_content")
+                        tipoUsuario.equals("admin") ? "👨‍⚕️ Médicos" : "👤 Pacientes",
+                        e -> showContent("usuarios_content")
                 );
                 sidebarPanel.add(usuariosBtn);
             }
@@ -298,7 +297,7 @@ public class RecetasMedicasGUI extends JFrame {
 
             JPanel statsPanel = new JPanel(new GridLayout(1, 3, 15, 0));
             statsPanel.setOpaque(false);
-            
+
             try {
                 int citasCount = 0;
                 int recetasCount = 0;
@@ -442,10 +441,10 @@ public class RecetasMedicasGUI extends JFrame {
                     recetaCard.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80));
 
                     Medico medico = medicoService.obtenerMedico(receta.getId_medico());
-                    String recetaText = "Receta - " + medico.getNombre() + " - " + 
-                        receta.getFecha_emision().toString().substring(0, 10) + " - " +
-                        (receta.getMedicamentos() != null ? receta.getMedicamentos().size() : 0) + 
-                        " medicamentos - " + (receta.isActiva() ? "Activa" : "Inactiva");
+                    String recetaText = "Receta - " + medico.getNombre() + " - "
+                            + receta.getFecha_emision().toString().substring(0, 10) + " - "
+                            + (receta.getMedicamentos() != null ? receta.getMedicamentos().size() : 0)
+                            + " medicamentos - " + (receta.isActiva() ? "Activa" : "Inactiva");
 
                     JLabel recetaLabel = new JLabel(recetaText);
                     recetaLabel.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -534,7 +533,7 @@ public class RecetasMedicasGUI extends JFrame {
 
         private void mostrarFormularioCita() {
             JDialog dialog = new JDialog((Frame) SwingUtilities.getWindowAncestor(this),
-                "Nueva Cita", true);
+                    "Nueva Cita", true);
             dialog.setSize(400, 350);
             dialog.setLocationRelativeTo(this);
 
@@ -557,7 +556,7 @@ public class RecetasMedicasGUI extends JFrame {
             panel.add(new JLabel("Médico:"));
             JComboBox<String> medicoBox = new JComboBox<>();
             medicoBox.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
-            
+
             try {
                 List<Medico> medicos = medicoService.obtenerMedicosActivos();
                 for (Medico m : medicos) {
@@ -566,7 +565,7 @@ public class RecetasMedicasGUI extends JFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(dialog, "Error al cargar médicos");
             }
-            
+
             panel.add(medicoBox);
 
             panel.add(Box.createVerticalStrut(10));
@@ -581,13 +580,13 @@ public class RecetasMedicasGUI extends JFrame {
                 try {
                     String[] medicoParts = ((String) medicoBox.getSelectedItem()).split("\\|");
                     ObjectId medicoId = new ObjectId(medicoParts[0]);
-                    
+
                     java.util.Date fecha = new java.util.Date();
                     Cita cita = new Cita(usuarioId, medicoId, fecha, motivoArea.getText());
                     citaService.crearCita(cita);
-                    
+
                     JOptionPane.showMessageDialog(dialog, "Cita agendada correctamente",
-                        "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                            "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     dialog.dispose();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(dialog, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -602,7 +601,7 @@ public class RecetasMedicasGUI extends JFrame {
 
         private void mostrarFormularioUsuario() {
             JDialog dialog = new JDialog((Frame) SwingUtilities.getWindowAncestor(this),
-                "Nuevo Usuario", true);
+                    "Nuevo Usuario", true);
             dialog.setSize(400, 350);
             dialog.setLocationRelativeTo(this);
 
@@ -639,12 +638,12 @@ public class RecetasMedicasGUI extends JFrame {
                 try {
                     if (tipoUsuario.equals("admin")) {
                         Medico medico = new Medico(emailField.getText(), "password123",
-                            nombreField.getText(), "", telefonoField.getText(),
-                            "", especialidadField.getText(), "", 30);
+                                nombreField.getText(), "", telefonoField.getText(),
+                                "", especialidadField.getText(), "", 30);
                         medicoService.registrarMedico(medico);
                     }
                     JOptionPane.showMessageDialog(dialog, "Usuario creado correctamente",
-                        "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                            "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     dialog.dispose();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(dialog, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

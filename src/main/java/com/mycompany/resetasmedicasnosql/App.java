@@ -21,7 +21,7 @@ import org.bson.types.ObjectId;
  *
  * @author gatog
  */
-public class ResetasMedicasNoSQL {
+public class App {
 
     public static void main(String[] args) {
         MongoClientProvider.INSTANCE.init();
