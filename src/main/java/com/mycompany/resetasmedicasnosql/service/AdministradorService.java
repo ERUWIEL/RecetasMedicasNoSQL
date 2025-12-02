@@ -4,6 +4,13 @@
  */
 package com.mycompany.resetasmedicasnosql.service;
 
+import com.mycompany.resetasmedicasnosql.exception.ServiceException;
+import com.mycompany.resetasmedicasnosql.model.Administrador;
+import com.mycompany.resetasmedicasnosql.repository.IAdministradorRepository;
+import java.util.List;
+import java.util.Optional;
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author Luis Valenzuela

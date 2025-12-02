@@ -4,6 +4,15 @@
  */
 package com.mycompany.resetasmedicasnosql.service;
 
+import com.mycompany.resetasmedicasnosql.exception.ServiceException;
+import com.mycompany.resetasmedicasnosql.model.Disponibilidad;
+import com.mycompany.resetasmedicasnosql.model.Medico;
+import com.mycompany.resetasmedicasnosql.repository.IMedicoRepository;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author Luis Valenzuela
